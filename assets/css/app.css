@@ -1,0 +1,17 @@
+.sidebar {
+    width: 280px;
+    position: fixed;
+    height: 100vh;
+}
+
+.main-content {
+    padding-left: 280px;
+}
+
+.navbar-breadcrumb-pos-y {
+    position: absolute;
+    top: 16px;
+}
+.navbar-breadcrumb-pos-x{
+    left: 285px;
+}
