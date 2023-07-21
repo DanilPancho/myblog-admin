@@ -1,4 +1,4 @@
-<div class="container-fluid border">
+<div class="border">
     <nav class="navbar navbar-expand-lg" data-bs-theme="light">
         <div class="container-fluid">
             <div class="collapse navbar-collapse justify-content-end" id="navbarColor03">

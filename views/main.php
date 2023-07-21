@@ -1,5 +1,9 @@
-<?php require_once '../includes/head.php' ?>
-<?php require_once '../includes/sidebar.php' ?>
+<?php
+$GLOBALS['page'] = 'main';
+
+require_once '../includes/head.php';
+require_once '../includes/sidebar.php';
+?>
 
 <main class="main-content">
 

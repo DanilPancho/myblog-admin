@@ -6,13 +6,13 @@ require_once 'Connection.php';
 
 use Exception;
 
-class Category extends Connection
+class Post extends Connection
 {
-    private string $createStatement = 'INSERT INTO categories (name) VALUES (:name)';
-    private string $indexStatement = 'SELECT * FROM categories';
-    private string $showStatement = 'SELECT * FROM categories WHERE id = :id';
-    private string $editStatement = 'UPDATE categories SET name = :name WHERE id = :id';
-    private string $deleteStatement = 'DELETE FROM categories WHERE id = :id';
+    private string $createStatement = 'INSERT INTO posts (name) VALUES (:name)';
+    private string $indexStatement = 'SELECT * FROM posts';
+    private string $showStatement = 'SELECT * FROM posts WHERE id = :id';
+    private string $editStatement = 'UPDATE posts SET name = :name WHERE id = :id';
+    private string $deleteStatement = 'DELETE FROM posts WHERE id = :id';
 
     /**
      * @return array|false
@@ -35,7 +35,7 @@ class Category extends Connection
         $connection = $this->connect();
         $stmt = $connection->prepare($this->createStatement);
         $stmt->execute($params);
-        header('Location: /views/category/index.php');
+        header('Location: /views/post/index.php');
     }
 
     /**
@@ -59,7 +59,7 @@ class Category extends Connection
         $connection = $this->connect();
         $stmt = $connection->prepare($this->editStatement);
         $stmt->execute($params);
-        header('Location: /views/category/show.php' . '?id=' . $params['id']);
+        header('Location: /views/post/show.php' . '?id=' . $params['id']);
         return $stmt->fetch();
     }
 
@@ -72,6 +72,6 @@ class Category extends Connection
         $connection = $this->connect();
         $stmt = $connection->prepare($this->deleteStatement);
         $stmt->execute($params);
-        header('Location: /views/category/index.php');
+        header('Location: /views/post/index.php');
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace Classes;
+
 use PDO;
 use PDOException;
 
@@ -9,17 +10,17 @@ class Connection
     public string $servername = '0.0.0.0';
     public string $username = 'root';
     public string $password = 'localhost';
-    public string $dbname = 'mysql';
+    public string $dbname = 'blog';
 
     /**
-     * @return void
+     * @return ?PDO
      */
-    public function connect(): void
+    public function connect(): ?PDO
     {
         try {
-            $conn = new PDO("mysql:host=$this->servername; dbname=$this->dbname", $this->username, $this->password);
+            return new PDO("mysql:host=$this->servername; dbname=$this->dbname", $this->username, $this->password);
         } catch (PDOException $e) {
-            echo $e->getMessage();
+            die($e->getMessage());
         }
     }
 }
