@@ -1,15 +1,14 @@
 <?php
 
-use Classes\Tag;
+use Classes\Post;
 
-require_once '../../../Classes/Tag.php';
+require_once '../../../Classes/Post.php';
 
-$tag = new Tag();
+$post = new Post();
 
 try {
-    $tag->delete([
-        'id' => $_GET['id'],
-    ]);
+    $post->delete($_GET['id']);
+    header('Location: /views/post/index.php');
 } catch (Exception $e) {
     die($e->getMessage());
 }

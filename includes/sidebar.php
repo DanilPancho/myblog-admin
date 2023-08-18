@@ -2,7 +2,7 @@
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
             <a href="/views/main.php"
-               class="nav-link link-body-emphasis <?= $GLOBALS['page'] === 'main' ? 'active' : ''; ?>">
+               class="shadow-sm mt-1 nav-link link-body-emphasis <?= $GLOBALS['page'] === 'main' ? 'text-white active' : ''; ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi pe-none me-2"
                      viewBox="0 0 16 16">
@@ -12,7 +12,8 @@
             </a>
         </li>
         <li>
-            <a href="/views/category/index.php" class="nav-link link-body-emphasis <?= $GLOBALS['page'] === 'categories' ? 'active' : ''; ?>">
+            <a href="/views/category/index.php"
+               class="shadow-sm mt-1 nav-link link-body-emphasis <?= $GLOBALS['page'] === 'categories' ? 'text-white active' : ''; ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi pe-none me-2" viewBox="0 0 16 16">
                     <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
@@ -23,7 +24,7 @@
         </li>
         <li>
             <a href="/views/tag/index.php"
-               class="nav-link link-body-emphasis <?= $GLOBALS['page'] === 'tags' ? 'active' : ''; ?>">
+               class="shadow-sm mt-1 nav-link link-body-emphasis <?= $GLOBALS['page'] === 'tags' ? 'text-white active' : ''; ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi pe-none me-2"
                      viewBox="0 0 16 16">
@@ -34,7 +35,8 @@
             </a>
         </li>
         <li>
-            <a href="/views/post/index.php" class="nav-link link-body-emphasis <?= $GLOBALS['page'] === 'posts' ? 'active' : ''; ?>">
+            <a href="/views/post/index.php"
+               class="shadow-sm mt-1 nav-link link-body-emphasis <?= $GLOBALS['page'] === 'posts' ? 'text-white active' : ''; ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi pe-none me-2" viewBox="0 0 16 16">
                     <path d="M0 2.5A1.5 1.5 0 0 1 1.5 1h11A1.5 1.5 0 0 1 14 2.5v10.528c0 .3-.05.654-.238.972h.738a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 1 1 0v9a1.5 1.5 0 0 1-1.5 1.5H1.497A1.497 1.497 0 0 1 0 13.5v-11zM12 14c.37 0 .654-.211.853-.441.092-.106.147-.279.147-.531V2.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5v11c0 .278.223.5.497.5H12z"/>
@@ -44,7 +46,8 @@
             </a>
         </li>
         <li>
-            <a href="/views/user/index.php" class="nav-link link-body-emphasis <?= $GLOBALS['page'] === 'users' ? 'active' : ''; ?>">
+            <a href="/views/user/index.php"
+               class="shadow-sm mt-1 nav-link link-body-emphasis <?= $GLOBALS['page'] === 'users' ? 'text-white active' : ''; ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi pe-none me-2" viewBox="0 0 16 16">
                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>

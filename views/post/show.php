@@ -1,13 +1,23 @@
 <?php
 
+use Classes\Category;
 use Classes\Post;
+use Classes\Tag;
 
 $GLOBALS['page'] = 'posts';
 
 require_once '../../App/Classes/Post.php';
+require_once '../../App/Classes/Category.php';
+require_once '../../App/Classes/Tag.php';
 
-$service = new Post();
-$post = $service->show(['id' => $_GET['id']]);
+$postService = new Post();
+$post = $postService->show(['id' => $_GET['id']]);
+
+$categoryService = new Category();
+$category = $categoryService->show(['id' => $post['category_id']]);
+
+$tagService = new Tag();
+$tags = $tagService->forPost(['post_id' => $post['id']]);
 
 require_once '../../includes/head.php';
 require_once '../../includes/sidebar.php';
@@ -67,7 +77,7 @@ require_once '../../includes/sidebar.php';
 
             </a>
 
-            <a href="<?= '../../App/Controllers/PostController/delete.php' . '?id=' . $post['id'] ?>"
+            <a href="<?= '../../App/Http/Controllers/PostController/delete.php' . '?id=' . $post['id'] ?>"
                onclick="return confirm('Удалить пост?')"
                class="btn btn-danger"
                type="button">
@@ -85,27 +95,84 @@ require_once '../../includes/sidebar.php';
         </div>
     </div>
 
-    <div class="container-fluid">
-        <table class="table table-hover">
-            <tbody class="table-group-divider">
-            <tr>
-                <td>ID</td>
-                <td><?= $post['id'] ?></td>
-            </tr>
-            <tr>
-                <td>Название</td>
-                <td><?= $post['name'] ?></td>
-            </tr>
-            <tr>
-                <td>Дата создания</td>
-                <td><?= $post['created_at'] ?></td>
-            </tr>
-            <tr>
-                <td>Дата обновления</td>
-                <td><?= $post['updated_at'] ?></td>
-            </tr>
-            </tbody>
-        </table>
+    <div class="container-fluid mt-3">
+        <label for="id">
+            ID
+        </label>
+        <div class="form-control"
+             id="id">
+            <?= $post['id'] ?>
+        </div>
+
+        <td style="height: 200px;">
+            <label for="previewImage">
+                Изображение поста
+            </label>
+            <div id="previewImage">
+                <img src="<?= '../../public/images/' . $post['preview_image'] ?>"
+                     alt="Изображение поста">
+            </div>
+
+            <label for="name">
+                Название
+            </label>
+            <div class="form-control"
+                 id="name">
+                <?= $post['name'] ?>
+            </div>
+
+            <label for="content">
+                Содержание
+            </label>
+            <textarea class="form-control"
+                      disabled="disabled"
+                      readonly="readonly"
+                      style="resize: none; background: white;"
+                      cols="140"
+                      rows="20"
+                      id="content"><?= $post['content'] ?></textarea>
+
+            <label for="mainImage">
+                Главное изображение
+            </label>
+            <div id="mainImage">
+                <img src="<?= '../../public/images/' . $post['main_image'] ?>"
+                     alt="Главное изображение">
+            </div>
+
+            <label for="category">
+                Категория
+            </label>
+            <div class="form-control"
+                 id="category">
+                <?= $category['name'] ?>
+            </div>
+
+            <label for="tag">
+                Теги
+            </label>
+            <div class="form-control"
+                 id="tag">
+                <?php foreach ($tags as $tag): ?>
+
+                    <?= $tag['name'] ?>
+
+                <?php endforeach; ?>
+            </div>
+
+            <label for="content">
+                Дата создания
+            </label>
+            <div class="form-control">
+                <?= $post['created_at'] ?>
+            </div>
+
+            <label for="content">
+                Дата обновления
+            </label>
+            <div class="form-control mb-4">
+                <?= $post['updated_at'] ?>
+            </div>
     </div>
 
 </main>

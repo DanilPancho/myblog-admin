@@ -45,7 +45,7 @@ require_once '../../includes/sidebar.php';
         </ol>
     </div>
 
-    <div class="container-fluid d-flex justify-content-between mt-3 mb-3">
+    <div class="container d-flex justify-content-between mt-3 mb-3">
 
         <a href="index.php"
            type="button"
@@ -57,7 +57,7 @@ require_once '../../includes/sidebar.php';
 
     </div>
 
-    <div class="container-fluid">
+    <div class="container">
 
         <form action="/App/Http/Controllers/TagController/create.php" method="POST">
 

@@ -13,6 +13,7 @@ class Tag extends Connection
     private string $showStatement = 'SELECT * FROM tags WHERE id = :id';
     private string $editStatement = 'UPDATE tags SET name = :name WHERE id = :id';
     private string $deleteStatement = 'DELETE FROM tags WHERE id = :id';
+    private string $postTagStatement = 'SELECT * FROM post_tag JOIN tags ON tags.id = post_tag.tag_id WHERE post_tag.post_id = :post_id;';
 
     /**
      * @return array|false
@@ -73,5 +74,17 @@ class Tag extends Connection
         $stmt = $connection->prepare($this->deleteStatement);
         $stmt->execute($params);
         header('Location: /views/tag/index.php');
+    }
+
+    /**
+     * @param array $params
+     * @return false|array
+     */
+    public function forPost(array $params): false|array
+    {
+        $connection = $this->connect();
+        $stmt = $connection->prepare($this->postTagStatement);
+        $stmt->execute($params);
+        return $stmt->fetchAll();
     }
 }

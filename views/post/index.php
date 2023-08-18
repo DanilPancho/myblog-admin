@@ -51,7 +51,7 @@ require_once '../../includes/sidebar.php';
         </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="container-fluid mt-3">
         <table class="table table-hover">
             <thead>
             <tr>

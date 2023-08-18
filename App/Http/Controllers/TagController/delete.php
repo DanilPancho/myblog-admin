@@ -1,13 +1,13 @@
 <?php
 
-use Classes\Post;
+use Classes\Tag;
 
-require_once '../../../Classes/Post.php';
+require_once '../../../Classes/Tag.php';
 
-$post = new Post();
+$tag = new Tag();
 
 try {
-    $post->delete([
+    $tag->delete([
         'id' => $_GET['id'],
     ]);
 } catch (Exception $e) {

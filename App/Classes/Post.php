@@ -8,11 +8,12 @@ use Exception;
 
 class Post extends Connection
 {
-    private string $createStatement = 'INSERT INTO posts (name) VALUES (:name)';
+    private string $createStatement = 'INSERT INTO posts (name, content, preview_image, main_image, user_id, category_id) VALUES (:name, :content, :preview_image, :main_image, :user_id, :category_id)';
     private string $indexStatement = 'SELECT * FROM posts';
     private string $showStatement = 'SELECT * FROM posts WHERE id = :id';
-    private string $editStatement = 'UPDATE posts SET name = :name WHERE id = :id';
+    private string $editStatement = 'UPDATE posts SET name = :name, content = :content, preview_image = :preview_image, main_image = :main_image, category_id = :category_id WHERE id = :id';
     private string $deleteStatement = 'DELETE FROM posts WHERE id = :id';
+    private string $bindTagsStatement = 'INSERT INTO post_tag (tag_id, post_id) VALUES (:tag_id, :post_id)';
 
     /**
      * @return array|false
@@ -27,15 +28,31 @@ class Post extends Connection
 
     /**
      * @param array $params
-     * @return void
-     * @throws Exception
+     * @return false|string
      */
-    public function create(array $params): void
+    public function create(array $params): false|string
     {
         $connection = $this->connect();
         $stmt = $connection->prepare($this->createStatement);
         $stmt->execute($params);
-        header('Location: /views/post/index.php');
+        return $connection->lastInsertId();
+    }
+
+    /**
+     * @param $postId
+     * @param array $tagIds
+     * @return void
+     */
+    public function bindTags($postId, array $tagIds = []): void
+    {
+        $connection = $this->connect();
+        foreach ($tagIds as $tagId) {
+            $stmt = $connection->prepare($this->bindTagsStatement);
+            $stmt->execute([
+                'post_id' => $postId,
+                'tag_id' => $tagId,
+            ]);
+        }
     }
 
     /**
@@ -59,19 +76,23 @@ class Post extends Connection
         $connection = $this->connect();
         $stmt = $connection->prepare($this->editStatement);
         $stmt->execute($params);
-        header('Location: /views/post/show.php' . '?id=' . $params['id']);
+        header('Location: /views/post/index.php');
         return $stmt->fetch();
     }
 
     /**
-     * @param array $params
+     * @param $postId
      * @return void
      */
-    public function delete(array $params): void
+    public function delete($postId): void
     {
         $connection = $this->connect();
+        $stmt = $connection->prepare($this->showStatement);
+        $stmt->execute(['id' => $postId]);
+        $post = $stmt->fetchObject();
+        unlink('../../../../public/images/' . $post->preview_image);
+        unlink('../../../../public/images/' . $post->main_image);
         $stmt = $connection->prepare($this->deleteStatement);
-        $stmt->execute($params);
-        header('Location: /views/post/index.php');
+        $stmt->execute(['id' => $_GET['id']]);
     }
 }

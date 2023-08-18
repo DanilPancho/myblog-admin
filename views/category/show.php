@@ -67,7 +67,7 @@ require_once '../../includes/sidebar.php';
 
             </a>
 
-            <a href="<?= '../../App/Controllers/CategoryController/delete.php' . '?id=' . $category['id'] ?>"
+            <a href="<?= '../../App/Http/Controllers/CategoryController/delete.php' . '?id=' . $category['id'] ?>"
                onclick="return confirm('Удалить категорию?')"
                class="btn btn-danger"
                type="button">
@@ -85,7 +85,7 @@ require_once '../../includes/sidebar.php';
         </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="container-fluid mt-3">
         <table class="table table-hover">
             <tbody class="table-group-divider">
             <tr>
