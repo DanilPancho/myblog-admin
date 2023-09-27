@@ -11,7 +11,7 @@ class Personal extends Connection
 {
     private string $showStatement = 'SELECT * FROM users WHERE id = :id';
     private string $editStatement = 'UPDATE users SET name = :name, email = :email, surname = :surname WHERE id = :id';
-    private string $changePasswordStatement = 'UPDATE users SET password = :new_password, password_confirmation = :password_confirmation';
+    private string $changePasswordStatement = 'UPDATE users SET password = :new_password WHERE id = :id';
 
     /**
      * @return mixed
@@ -35,7 +35,7 @@ class Personal extends Connection
         $connection = $this->connect();
         $stmt = $connection->prepare($this->editStatement);
         $stmt->execute($params);
-        header('Location: /views/personal/show.php' . '?id=' . $params['id']);
+        header('Location: /views/personal/index.php' . '?id=' . $params['id']);
         return $stmt->fetch();
     }
 
@@ -48,7 +48,7 @@ class Personal extends Connection
         $connection = $this->connect();
         $stmt = $connection->prepare($this->changePasswordStatement);
         $stmt->execute($params);
-        header('Location: /views/personal/show.php' . '?id=' . $_SESSION['user_id']);
+        header('Location: /views/personal/index.php' . '?id=' . $_SESSION['user_id']);
         return $stmt->fetch();
     }
 }

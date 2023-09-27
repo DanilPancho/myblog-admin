@@ -15,7 +15,6 @@ $auth = new Auth();
 $id = $_SESSION['user_id'];
 $oldPassword = $_POST['old_password'];
 $newPassword = $_POST['new_password'];
-$passwordConfirmation = $newPassword;
 
 if (empty($oldPassword)) {
     die('Поле "Старый пароль" должно быть заполнено');
@@ -23,12 +22,11 @@ if (empty($oldPassword)) {
 if (empty($newPassword)) {
     die('Поле "Новый пароль" должно быть заполнено');
 }
-if (mb_strlen($newPassword) <= 8) {
+if (mb_strlen($newPassword) <= 7) {
     die('Новый пароль должен содержать не менее 8 символов');
 }
 
 $newPassword = password_hash($newPassword, PASSWORD_BCRYPT);
-$passwordConfirmation = password_hash($passwordConfirmation, PASSWORD_BCRYPT);
 
 $user = $auth->getUserById($id);
 if (!password_verify($oldPassword, $user->password)) {
@@ -36,8 +34,8 @@ if (!password_verify($oldPassword, $user->password)) {
 }
 try {
     $personal->changePassword([
+        'id' => $id,
         'new_password' => $newPassword,
-        'password_confirmation' => $passwordConfirmation,
     ]);
 } catch (Exception $e) {
     die($e->getMessage());

@@ -10,6 +10,7 @@ $id = $_POST['id'];
 $name = trim($_POST['name']);
 $email = trim($_POST['email']);
 $surname = trim($_POST['surname']);
+$role = $_POST['role'];
 
 if (empty($name)) {
     die('Поле "Имя пользователя" обязательно к заполнению');
@@ -23,6 +24,7 @@ try {
         'name' => $name,
         'email' => $email,
         'surname' => $surname,
+        'role' => $role,
     ]);
 
 } catch (Exception $e) {

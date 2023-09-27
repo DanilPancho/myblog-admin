@@ -11,7 +11,7 @@ class User extends Connection
     private string $createStatement = 'INSERT INTO users (name, email, surname, password, role) VALUES (:name, :email, :surname, :password, :role)';
     private string $indexStatement = 'SELECT * FROM users';
     private string $showStatement = 'SELECT * FROM users WHERE id = :id';
-    private string $editStatement = 'UPDATE users SET name = :name, surname = :surname, email = :email WHERE id = :id';
+    private string $editStatement = 'UPDATE users SET name = :name, surname = :surname, email = :email, role = :role WHERE id = :id';
     private string $deleteStatement = 'DELETE FROM users WHERE id = :id';
 
     /**

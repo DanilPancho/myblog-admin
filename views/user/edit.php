@@ -13,129 +13,146 @@ require_once '../../includes/head.php';
 require_once '../../includes/sidebar.php';
 ?>
 
-    <main class="main-content">
+<main class="main-content">
 
-        <?php require_once '../../includes/navbar.php' ?>
+    <?php require_once '../../includes/navbar.php' ?>
 
-        <div class="container navbar-breadcrumb-pos-x navbar-breadcrumb-pos-y">
-            <ol class="breadcrumb">
+    <div class="container navbar-breadcrumb-pos-x navbar-breadcrumb-pos-y">
+        <ol class="breadcrumb">
 
-                <li class="breadcrumb-item">
-                    <a style="text-decoration: none;"
-                       href="/views/main.php">
+            <li class="breadcrumb-item">
+                <a style="text-decoration: none;"
+                   href="/views/main.php">
 
-                        Главная
+                    Главная
 
-                    </a>
-                </li>
+                </a>
+            </li>
 
-                <li class="breadcrumb-item">
-                    <a style="text-decoration: none;"
-                       href="index.php">
+            <li class="breadcrumb-item">
+                <a style="text-decoration: none;"
+                   href="index.php">
 
-                        Пользователи
+                    Пользователи
 
-                    </a>
-                </li>
+                </a>
+            </li>
 
-                <li class="breadcrumb-item">
-                    <a style="text-decoration: none;"
-                       href="<?= 'show.php' . '?id=' . $user['id'] ?>">
+            <li class="breadcrumb-item">
+                <a style="text-decoration: none;"
+                   href="<?= 'show.php' . '?id=' . $user['id'] ?>">
 
-                        Просмотр пользователя
+                    Просмотр пользователя
 
-                    </a>
-                </li>
+                </a>
+            </li>
 
-                <li class="breadcrumb-item active"
-                    aria-current="page">
+            <li class="breadcrumb-item active"
+                aria-current="page">
 
-                    Редактирование данных пользователя "<?= $user['name'] ?>"
+                Редактирование данных пользователя "<?= $user['name'] ?>"
 
-                </li>
-            </ol>
-        </div>
+            </li>
+        </ol>
+    </div>
 
-        <div class="container d-flex justify-content-between mt-3 mb-3">
+    <div class="container d-flex justify-content-between mt-3 mb-3">
 
-            <a href="<?= 'show.php' . '?id=' . $user['id'] ?>"
-               type="button"
-               class="btn btn-primary">
+        <a href="<?= 'show.php' . '?id=' . $user['id'] ?>"
+           type="button"
+           class="btn btn-primary">
 
-                Назад
+            Назад
 
-            </a>
+        </a>
 
-        </div>
+    </div>
 
-        <div class="container">
-            <form action="/App/Http/Controllers/UserController/edit.php" method="POST">
-                <div class="row">
-                    <div class="col-6">
+    <div class="container">
+        <form action="/App/Http/Controllers/UserController/edit.php" method="POST">
+            <div class="row">
+                <div class="col-6">
 
-                        <label class="small fw-bold mt-2 mb-1"
-                               for="name">
+                    <label class="small fw-bold mt-2 mb-1"
+                           for="name">
 
-                            Имя пользователя
+                        Имя пользователя
 
-                        </label>
-                        <input placeholder="Имя пользователя"
-                               class="form-control"
-                               name="name"
-                               type="text"
-                               value="<?= $user['name'] ?? '' ?>"
-                               id="name">
+                    </label>
+                    <input placeholder="Имя пользователя"
+                           class="form-control"
+                           name="name"
+                           type="text"
+                           value="<?= $user['name'] ?? '' ?>"
+                           id="name">
 
-                    </div>
-                    <div class="col-6">
-
-                        <label class="small fw-bold mt-2 mb-1"
-                               for="surname">
-
-                            Фамилия
-
-                        </label>
-                        <input placeholder="Фамилия"
-                               class="form-control"
-                               name="surname"
-                               type="text"
-                               value="<?= $user['surname'] ?? '' ?>"
-                               id="surname">
-
-                    </div>
                 </div>
+                <div class="col-6">
 
-                <div class="row">
-                    <div class="col-6 mt-3">
+                    <label class="small fw-bold mt-2 mb-1"
+                           for="surname">
 
-                        <label class="small fw-bold mt-2 mb-1"
-                               for="email">
+                        Фамилия
 
-                            Email
+                    </label>
+                    <input placeholder="Фамилия"
+                           class="form-control"
+                           name="surname"
+                           type="text"
+                           value="<?= $user['surname'] ?? '' ?>"
+                           id="surname">
 
-                        </label>
-                        <input placeholder="<?= $user['email'] ?>"
-                               class="form-control"
-                               name="email"
-                               type="email"
-                               value="<?= $user['email'] ?? '' ?>"
-                               id="email">
-
-                    </div>
                 </div>
+            </div>
 
-                <div class="d-flex justify-content-end mt-3">
-                    <input class="btn btn-outline-primary"
-                           type="submit"
-                           value="Сохранить">
+            <div class="row">
+                <div class="col-6 mt-3">
 
-                    <input type="hidden" name="id" value="<?= $user['id'] ?>">
+                    <label class="small fw-bold mt-2 mb-1"
+                           for="email">
+
+                        Email
+
+                    </label>
+                    <input placeholder="<?= $user['email'] ?>"
+                           class="form-control"
+                           name="email"
+                           type="email"
+                           value="<?= $user['email'] ?? '' ?>"
+                           id="email">
 
                 </div>
 
-            </form>
-        </div>
+                <div class="col-6 mt-3">
 
-    </main>
+                    <label class="small fw-bold mt-2 mb-1"
+                           for="role">
+
+                        Роль
+
+                    </label>
+                    <select class="form-control select2bs4" id="role" name="role">
+                        <optgroup class="active" label="Выберите роль">
+                            <option value="1">User</option>
+                            <option value="2">Admin</option>
+                        </optgroup>
+                    </select>
+
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end mt-3">
+                <input class="btn btn-outline-primary"
+                       type="submit"
+                       value="Сохранить">
+
+                <input type="hidden" name="id" value="<?= $user['id'] ?>">
+
+            </div>
+
+        </form>
+    </div>
+
+</main>
 
 <?php require_once '../../includes/foot.php' ?>

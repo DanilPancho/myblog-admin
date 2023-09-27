@@ -25,7 +25,7 @@ if (empty($passwordConfirmation)) {
 if (empty($password === $passwordConfirmation)) {
     die('Пароль не соответствует с подтвержденным');
 }
-if (empty(mb_strlen($password) <= 8)) {
+if (mb_strlen($password) <= 7) {
     die('Пароль должен содержать не менее 8 символов');
 }
 $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
