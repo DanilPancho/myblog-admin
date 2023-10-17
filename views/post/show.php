@@ -21,6 +21,7 @@ $tags = $tagService->forPost(['post_id' => $post['id']]);
 
 require_once '../../includes/head.php';
 require_once '../../includes/sidebar.php';
+
 ?>
 
 <main class="main-content">
