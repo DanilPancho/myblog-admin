@@ -34,7 +34,7 @@ $user = $service->show();
     <div class="container">
         <form class="form-change-password" action="/App/Http/Controllers/PersonalController/change-password.php" method="POST">
 
-            <div>
+            <div class="col-3">
                 <label class="d-flex small mt-2"
                        style="margin: unset"
                        for="old-password">

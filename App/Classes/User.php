@@ -13,6 +13,10 @@ class User extends Connection
     private string $showStatement = 'SELECT * FROM users WHERE id = :id';
     private string $editStatement = 'UPDATE users SET name = :name, surname = :surname, email = :email, role = :role WHERE id = :id';
     private string $deleteStatement = 'DELETE FROM users WHERE id = :id';
+    public static $roles = [
+        1 => 'user',
+        2 => 'admin',
+    ];
 
     /**
      * @return array|false
@@ -35,7 +39,6 @@ class User extends Connection
         $connection = $this->connect();
         $stmt = $connection->prepare($this->createStatement);
         $stmt->execute($params);
-        header('Location: /views/user/index.php');
     }
 
     /**
@@ -59,7 +62,6 @@ class User extends Connection
         $connection = $this->connect();
         $stmt = $connection->prepare($this->editStatement);
         $stmt->execute($params);
-        header('Location: /views/user/show.php' . '?id=' . $params['id']);
         return $stmt->fetch();
     }
 
@@ -72,6 +74,5 @@ class User extends Connection
         $connection = $this->connect();
         $stmt = $connection->prepare($this->deleteStatement);
         $stmt->execute($params);
-        header('Location: /views/user/index.php');
     }
 }

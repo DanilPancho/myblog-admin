@@ -96,6 +96,7 @@ $categories = $category->index();
 
                         </label>
                         <textarea class="form-control"
+                                  style="line-height: 1.8;"
                                   name="content"
                                   id="content"
                                   cols="30"
@@ -141,10 +142,9 @@ $categories = $category->index();
                                 aria-label="Default select example"
                                 id="categorySelect">
                             <optgroup label="Выбор категории">
-                                <option>Выберите вариант</option>
                                 <?php foreach ($categories as $category): ?>
 
-                                    <option value="<?= $category['id'] ?>">
+                                    <option value="<?= $category['id']?>">
 
                                         <?= $category['name'] ?>
 
@@ -200,4 +200,3 @@ $categories = $category->index();
 </main>
 
 <?php require_once '../../includes/foot.php' ?>
-

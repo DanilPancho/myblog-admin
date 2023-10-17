@@ -1,7 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+
+* {
+    font-family: 'Manrope', sans-serif;
+}
+
 .sidebar {
     width: 280px;
     position: fixed;
     height: 100vh;
+}
+
+.sidebar-item {
+    transition: 300ms;
+    border-radius: 5px;
+}
+
+.sidebar-item:hover {
+    background-color: #f0f0f0;
 }
 
 .main-content {
@@ -12,22 +27,50 @@
     position: absolute;
     top: 16px;
 }
-.navbar-breadcrumb-pos-x{
+
+.navbar-breadcrumb-pos-x {
     left: 285px;
 }
 
-.form-auth{
+.form-auth {
     height: 85vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.form-change-password{
+
+.form-change-password {
     height: 85vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .nav-link.active {
     color: white !important;
+}
+
+.card-decoration-link {
+    transition: 0.3s;
+}
+
+.card-decoration-link:hover {
+    background: #f7f7f7;
+}
+
+table {
+    margin-bottom: 0 !important;
+}
+
+tbody > tr:last-child > td {
+    border-bottom: none;
+}
+
+thead > tr > th {
+    border-top: none !important;
+    border-bottom: none !important;
+}
+
+.cursor-pointer {
+    cursor: pointer;
 }

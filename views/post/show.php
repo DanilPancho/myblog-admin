@@ -57,7 +57,7 @@ require_once '../../includes/sidebar.php';
         </ol>
     </div>
 
-    <div class="container-fluid d-flex justify-content-between mt-3 mb-3">
+    <div class="container d-flex justify-content-between mt-3 mb-3">
 
         <a href="index.php"
            type="button"
@@ -71,7 +71,7 @@ require_once '../../includes/sidebar.php';
 
             <a href="<?= 'edit.php' . '?id=' . $post['id'] ?>"
                type="button"
-               class="btn btn-primary">
+               class="btn btn-warning">
 
                 Редактировать
 
@@ -95,7 +95,7 @@ require_once '../../includes/sidebar.php';
         </div>
     </div>
 
-    <div class="container-fluid mt-3">
+    <div class="container mt-3">
         <label for="id">
             ID
         </label>
@@ -104,75 +104,74 @@ require_once '../../includes/sidebar.php';
             <?= $post['id'] ?>
         </div>
 
-        <td style="height: 200px;">
-            <label for="previewImage">
-                Изображение поста
-            </label>
-            <div id="previewImage">
-                <img src="<?= '../../public/images/' . $post['preview_image'] ?>"
-                     alt="Изображение поста">
-            </div>
+        <label for="previewImage">
+            Изображение поста
+        </label>
+        <div id="previewImage">
+            <img style="height: 200px;" src="<?= '../../public/images/' . $post['preview_image'] ?>"
+                 alt="Изображение поста">
+        </div>
 
-            <label for="name">
-                Название
-            </label>
-            <div class="form-control"
-                 id="name">
-                <?= $post['name'] ?>
-            </div>
+        <label for="name">
+            Название
+        </label>
+        <div class="form-control"
+             id="name">
+            <?= $post['name'] ?>
+        </div>
 
-            <label for="content">
-                Содержание
-            </label>
-            <textarea class="form-control"
-                      disabled="disabled"
-                      readonly="readonly"
-                      style="resize: none; background: white;"
-                      cols="140"
-                      rows="20"
-                      id="content"><?= $post['content'] ?></textarea>
+        <label for="content">
+            Содержание
+        </label>
+        <textarea class="form-control"
+                  disabled="disabled"
+                  readonly="readonly"
+                  style="resize: none; background: white; line-height: 1.8;"
+                  cols="140"
+                  rows="20"
+                  id="content"><?= $post['content'] ?></textarea>
 
-            <label for="mainImage">
-                Главное изображение
-            </label>
-            <div id="mainImage">
-                <img src="<?= '../../public/images/' . $post['main_image'] ?>"
-                     alt="Главное изображение">
-            </div>
+        <label for="mainImage">
+            Главное изображение
+        </label>
+        <div id="mainImage">
+            <img style="height: 200px;" src="<?= '../../public/images/' . $post['main_image'] ?>"
+                 alt="Главное изображение">
+        </div>
 
-            <label for="category">
-                Категория
-            </label>
-            <div class="form-control"
-                 id="category">
-                <?= $category['name'] ?>
-            </div>
+        <label for="category">
+            Категория
+        </label>
+        <div class="form-control"
+             id="category">
+            <?= $category['name'] ?>
+        </div>
 
-            <label for="tag">
-                Теги
-            </label>
-            <div class="form-control"
-                 id="tag">
-                <?php foreach ($tags as $tag): ?>
+        <label for="tag">
+            Теги
+        </label>
+        <div class="form-control"
+             id="tag">
+            <?php foreach ($tags as $tag): ?>
 
-                    <?= $tag['name'] ?>
+                <?= $tag['name'] ?>
 
-                <?php endforeach; ?>
-            </div>
+            <?php endforeach; ?>
+        </div>
 
-            <label for="content">
-                Дата создания
-            </label>
-            <div class="form-control">
-                <?= $post['created_at'] ?>
-            </div>
+        <label for="content">
+            Дата создания
+        </label>
+        <div class="form-control">
+            <?= $post['created_at'] ?>
+        </div>
 
-            <label for="content">
-                Дата обновления
-            </label>
-            <div class="form-control mb-4">
-                <?= $post['updated_at'] ?>
-            </div>
+        <label for="content">
+            Дата обновления
+        </label>
+        <div class="form-control mb-4">
+            <?= $post['updated_at'] ?>
+        </div>
     </div>
 
 </main>

@@ -58,7 +58,7 @@ require_once '../../includes/sidebar.php';
 
     <div class="container d-flex justify-content-between mt-3 mb-3">
 
-        <a href="<?= 'show.php' . '?id=' . $user['id'] ?>"
+        <a href="<?= 'index.php' ?>"
            type="button"
            class="btn btn-primary">
 

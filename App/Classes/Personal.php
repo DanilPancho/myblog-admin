@@ -35,7 +35,6 @@ class Personal extends Connection
         $connection = $this->connect();
         $stmt = $connection->prepare($this->editStatement);
         $stmt->execute($params);
-        header('Location: /views/personal/index.php' . '?id=' . $params['id']);
         return $stmt->fetch();
     }
 
@@ -48,7 +47,6 @@ class Personal extends Connection
         $connection = $this->connect();
         $stmt = $connection->prepare($this->changePasswordStatement);
         $stmt->execute($params);
-        header('Location: /views/personal/index.php' . '?id=' . $_SESSION['user_id']);
         return $stmt->fetch();
     }
 }

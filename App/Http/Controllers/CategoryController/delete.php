@@ -13,3 +13,5 @@ try {
 } catch (Exception $e) {
     die($e->getMessage());
 }
+
+header('Location: /views/category/index.php');

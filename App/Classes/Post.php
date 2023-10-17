@@ -11,7 +11,9 @@ class Post extends Connection
     private string $createStatement = 'INSERT INTO posts (name, content, preview_image, main_image, user_id, category_id) VALUES (:name, :content, :preview_image, :main_image, :user_id, :category_id)';
     private string $indexStatement = 'SELECT * FROM posts';
     private string $showStatement = 'SELECT * FROM posts WHERE id = :id';
-    private string $editStatement = 'UPDATE posts SET name = :name, content = :content, preview_image = :preview_image, main_image = :main_image, category_id = :category_id WHERE id = :id';
+    private string $editStatement = 'UPDATE posts SET name = :name, content = :content, category_id = :category_id WHERE id = :id';
+    private string $editPreviewImgStatement = 'UPDATE posts SET preview_image = :preview_image WHERE id = :id';
+    private string $editMainImgStatement = 'UPDATE posts SET main_image = :main_image WHERE id = :id';
     private string $deleteStatement = 'DELETE FROM posts WHERE id = :id';
     private string $bindTagsStatement = 'INSERT INTO post_tag (tag_id, post_id) VALUES (:tag_id, :post_id)';
 
@@ -76,7 +78,21 @@ class Post extends Connection
         $connection = $this->connect();
         $stmt = $connection->prepare($this->editStatement);
         $stmt->execute($params);
-        header('Location: /views/post/index.php');
+        return $stmt->fetch();
+    }
+
+    public function editPreviewImg(array $params)
+    {
+        $connection = $this->connect();
+        $stmt = $connection->prepare($this->editPreviewImgStatement);
+        $stmt->execute($params);
+        return $stmt->fetch();
+    }
+    public function editMainImg(array $params)
+    {
+        $connection = $this->connect();
+        $stmt = $connection->prepare($this->editMainImgStatement);
+        $stmt->execute($params);
         return $stmt->fetch();
     }
 

@@ -13,3 +13,5 @@ try {
 } catch (Exception $e) {
     die($e->getMessage());
 }
+
+header('Location: /views/user/index.php');

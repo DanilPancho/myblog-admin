@@ -9,7 +9,7 @@ class Connection
 {
     public string $servername = '0.0.0.0';
     public string $username = 'root';
-    public string $password = 'localhost';
+    public string $password = 'ejP98ESS3L26Vk';
     public string $dbname = 'blog';
 
     /**

@@ -14,6 +14,7 @@ class Tag extends Connection
     private string $editStatement = 'UPDATE tags SET name = :name WHERE id = :id';
     private string $deleteStatement = 'DELETE FROM tags WHERE id = :id';
     private string $postTagStatement = 'SELECT * FROM post_tag JOIN tags ON tags.id = post_tag.tag_id WHERE post_tag.post_id = :post_id;';
+    private string $editPostTagStatement = 'UPDATE post_tag SET tag_id = :tag_id WHERE post_id = :post_id';
 
     /**
      * @return array|false
@@ -36,7 +37,6 @@ class Tag extends Connection
         $connection = $this->connect();
         $stmt = $connection->prepare($this->createStatement);
         $stmt->execute($params);
-        header('Location: /views/tag/index.php');
     }
 
     /**
@@ -53,6 +53,18 @@ class Tag extends Connection
 
     /**
      * @param array $params
+     * @return false|array
+     */
+    public function forPost(array $params): false|array
+    {
+        $connection = $this->connect();
+        $stmt = $connection->prepare($this->postTagStatement);
+        $stmt->execute($params);
+        return $stmt->fetchAll();
+    }
+
+    /**
+     * @param array $params
      * @return mixed
      */
     public function edit(array $params): mixed
@@ -60,7 +72,14 @@ class Tag extends Connection
         $connection = $this->connect();
         $stmt = $connection->prepare($this->editStatement);
         $stmt->execute($params);
-        header('Location: /views/tag/show.php' . '?id=' . $params['id']);
+        return $stmt->fetch();
+    }
+
+    public function postTagEdit(array $params)
+    {
+        $connection = $this->connect();
+        $stmt = $connection->prepare($this->editPostTagStatement);
+        $stmt->execute($params);
         return $stmt->fetch();
     }
 
@@ -73,18 +92,5 @@ class Tag extends Connection
         $connection = $this->connect();
         $stmt = $connection->prepare($this->deleteStatement);
         $stmt->execute($params);
-        header('Location: /views/tag/index.php');
-    }
-
-    /**
-     * @param array $params
-     * @return false|array
-     */
-    public function forPost(array $params): false|array
-    {
-        $connection = $this->connect();
-        $stmt = $connection->prepare($this->postTagStatement);
-        $stmt->execute($params);
-        return $stmt->fetchAll();
     }
 }

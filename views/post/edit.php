@@ -6,6 +6,7 @@ use Classes\Category;
 
 $GLOBALS['page'] = 'posts';
 
+require_once '../../vendor/autoload.php';
 require_once '../../App/Classes/Post.php';
 require_once '../../includes/head.php';
 require_once '../../includes/sidebar.php';
@@ -19,6 +20,7 @@ $category = new Category();
 $post = $service->show(['id' => $_GET['id']]);
 $tags = $tag->index();
 $categories = $category->index();
+$tagsPost = $tag->forPost(['post_id' => $post['id']]);
 
 ?>
 
@@ -59,7 +61,7 @@ $categories = $category->index();
 
     <div class="container d-flex justify-content-between mt-3 mb-3">
 
-        <a href="index.php"
+        <a href="<?= 'show.php' . '?id=' . $post['id'] ?>"
            type="button"
            class="btn btn-primary">
 
@@ -101,6 +103,7 @@ $categories = $category->index();
 
                         </label>
                         <textarea class="form-control"
+                                  style="line-height: 1.8;"
                                   name="content"
                                   id="content"
                                   cols="30"
@@ -116,7 +119,7 @@ $categories = $category->index();
 
                         </label>
                         <div id="previewImage">
-                            <img src="<?= '../../public/images/' . $post['preview_image'] ?>"
+                            <img style="height: 200px;" src="<?= '../../public/images/' . $post['preview_image'] ?>"
                                  alt="Главное изображение">
                         </div>
                         <label class="small"
@@ -125,6 +128,7 @@ $categories = $category->index();
                         </label>
                         <input class="ms-1 mt-3"
                                type="checkbox"
+                               name="previewImageCheck"
                                style="width: 16px; height: 16px;"
                                id="previewImageCheck">
                         <input class="form-control"
@@ -138,7 +142,7 @@ $categories = $category->index();
                             Главное изображение
                         </label>
                         <div id="main_image">
-                            <img src="<?= '../../public/images/' . $post['main_image'] ?>"
+                            <img style="height: 200px;" src="<?= '../../public/images/' . $post['main_image'] ?>"
                                  alt="Главное изображение">
                         </div>
                         <label class="small"
@@ -147,6 +151,7 @@ $categories = $category->index();
                         </label>
                         <input class="ms-1 mt-3"
                                type="checkbox"
+                               name="mainImageCheck"
                                style="width: 16px; height: 16px;"
                                id="mainImageCheck">
                         <input class="form-control"
@@ -167,11 +172,9 @@ $categories = $category->index();
                                 aria-label="Default select example"
                                 id="categorySelect">
                             <optgroup label="Выбор категории">
-                                <option> - </option>
                                 <?php foreach ($categories as $category): ?>
 
-                                    <option selected="selected"
-                                            value="">
+                                    <option value="<?= $category['id']?>">
 
                                         <?= $category['name'] ?>
 
@@ -196,13 +199,12 @@ $categories = $category->index();
                                 id="tagSelect">
                             <optgroup label="Выбор тега">
                                 <?php foreach ($tags as $tag): ?>
-
-                                    <option selected="selected" value="<?= $tag['id'] ?>">
+                                    <option <?= in_array($tag['id'], array_column($tagsPost, 'tag_id')) ? 'selected' : ''?>
+                                            value="<?= $tag['id']?>">
 
                                         <?= $tag['name'] ?>
 
                                     </option>
-
                                 <?php endforeach; ?>
                             </optgroup>
                         </select>

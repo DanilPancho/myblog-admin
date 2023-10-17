@@ -1,11 +1,13 @@
 <?php
 
 use Classes\Personal;
+use Classes\User;
 
 $GLOBALS['page'] = 'personal';
 
 require_once '../../includes/head.php';
 require_once '../../includes/sidebar.php';
+require_once '../../App/Classes/User.php';
 require_once '../../App/Classes/Personal.php';
 
 $service = new Personal();
@@ -47,13 +49,13 @@ $user = $service->show();
         </ol>
     </div>
 
-    <div class="container-fluid d-flex justify-content-end mt-3 mb-3">
+    <div class="container d-flex justify-content-end mt-3 mb-3">
 
         <div class="btn-group" role="group" aria-label="Basic example">
 
             <a href="<?= 'edit.php' . '?id=' . $user['id'] ?>"
                type="button"
-               class="btn btn-primary">
+               class="btn btn-warning">
 
                 Редактировать
 
@@ -62,35 +64,33 @@ $user = $service->show();
         </div>
     </div>
 
-    <div class="container-fluid mt-3">
-        <table class="table table-hover">
-            <tbody class="table-group-divider">
-            <tr>
-                <td>ID</td>
-                <td><?= $user['id'] ?></td>
-            </tr>
-            <tr>
-                <td>Имя пользователя</td>
-                <td><?= $user['name'] ?></td>
-            </tr>
-            <tr>
-                <td>Фамилия</td>
-                <td><?= $user['surname'] ?></td>
-            </tr>
-            <tr>
-                <td>email</td>
-                <td><?= $user['email'] ?></td>
-            </tr>
-            <tr>
-                <td>Дата создания</td>
-                <td><?= $user['created_at'] ?></td>
-            </tr>
-            <tr>
-                <td>Дата обновления</td>
-                <td><?= $user['updated_at'] ?></td>
-            </tr>
-            </tbody>
-        </table>
+    <div class="container mt-3">
+        <div class="card me-auto text-dark card-decoration-link"
+             style="width: auto; text-decoration: none;">
+            <div class="card-body">
+                <p class="card-text" style="margin: unset">
+                    Имя: <?= $user['name'] ?>
+                </p>
+                <p class="card-text" style="margin: unset">
+                    Фамилия: <?= $user['surname'] ?: 'Не указано' ?>
+                </p>
+                <p class="card-text" style="margin: unset">
+                    Почта: <?= $user['email'] ?>
+                </p>
+                <p class="card-text text-nowrap" style="margin: unset">
+                    Дата создания: <?= $user['created_at'] ?>
+                </p>
+                <p class="card-text text-nowrap" style="margin: unset">
+                    Дата обновления: <?= $user['updated_at'] ?>
+                </p>
+            </div>
+            <div class="list-group list-group-flush p-2">
+                <div class="ms-2">
+                    <h5 class="card-title">Личный кабинет пользователя, <?= $user['name'] ?> <?= $user['surname'] ?>,
+                        ID: <?= $user['id'] ?></h5>
+                </div>
+            </div>
+        </div>
     </div>
 
 </main>

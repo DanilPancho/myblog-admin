@@ -14,3 +14,5 @@ try {
 } catch (Exception $e) {
     die($e->getMessage());
 }
+
+header('Location: /views/tag/index.php');

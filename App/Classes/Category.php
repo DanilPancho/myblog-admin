@@ -35,7 +35,6 @@ class Category extends Connection
         $connection = $this->connect();
         $stmt = $connection->prepare($this->createStatement);
         $stmt->execute($params);
-        header('Location: /views/category/index.php');
     }
 
     /**
@@ -59,7 +58,6 @@ class Category extends Connection
         $connection = $this->connect();
         $stmt = $connection->prepare($this->editStatement);
         $stmt->execute($params);
-        header('Location: /views/category/show.php' . '?id=' . $params['id']);
         return $stmt->fetch();
     }
 
@@ -72,6 +70,5 @@ class Category extends Connection
         $connection = $this->connect();
         $stmt = $connection->prepare($this->deleteStatement);
         $stmt->execute($params);
-        header('Location: /views/category/index.php');
     }
 }

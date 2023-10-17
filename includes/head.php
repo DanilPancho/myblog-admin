@@ -60,4 +60,4 @@ if ($authUser->role !== 2) {
         });
     })
 </script>
-<body class="bg-body-secondary bg-opacity-25">
+<body>

@@ -15,9 +15,11 @@ $surname = trim($_POST['surname']);
 if (empty($name)) {
     die('Поле "Имя пользователя" обязательно к заполнению');
 }
+
 if (empty($email)) {
     die('Поле "Email" обязательно к заполнению');
 }
+
 try {
     $user->edit([
         'id' => $id,
@@ -29,3 +31,5 @@ try {
 } catch (Exception $e) {
     die($e->getMessage());
 }
+
+header('Location: /views/personal/index.php');
